@@ -44,10 +44,18 @@ func (q *Questionnaire) Read() string {
 			q.isQuestionRead = false
 		}()
 
-		return q.entries[q.answersAlreadyRead].Answer
+		return q.readAnswer()
 	}
 
 	q.isQuestionRead = true
 
-	return q.entries[q.answersAlreadyRead].Question
+	return q.readQuestion()
+}
+
+func (q Questionnaire) readQuestion() string {
+	return "Q: " + q.entries[q.answersAlreadyRead].Question
+}
+
+func (q Questionnaire) readAnswer() string {
+	return "A: " + q.entries[q.answersAlreadyRead].Answer + "\n"
 }
