@@ -9,14 +9,14 @@ import (
 )
 
 type Keyboard struct {
-	getNextStateCommandHandler commands.GetNextStateCommandHandler
+	getQuestionAnswerCommandHandler commands.GetQuestionAnswerCommandHandler
 }
 
 func NewKeyboard(
-	getNextStateCommandHandler commands.GetNextStateCommandHandler,
+	getQuestionAnswerCommandHandler commands.GetQuestionAnswerCommandHandler,
 ) Keyboard {
 	return Keyboard{
-		getNextStateCommandHandler: getNextStateCommandHandler,
+		getQuestionAnswerCommandHandler: getQuestionAnswerCommandHandler,
 	}
 }
 
@@ -44,7 +44,7 @@ func (k Keyboard) Listen() (err error) {
 		}
 
 		if key == keyboard.KeyEnter {
-			fmt.Println(k.getNextStateCommandHandler.Handle())
+			fmt.Println(k.getQuestionAnswerCommandHandler.Handle())
 		}
 	}
 
