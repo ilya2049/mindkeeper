@@ -1,5 +1,7 @@
 package questionnaire
 
+import "math/rand/v2"
+
 type QuestionnaireEntry struct {
 	Question string
 	Answer   string
@@ -12,14 +14,28 @@ type Questionnaire struct {
 }
 
 func New(entries []QuestionnaireEntry) Questionnaire {
-	return Questionnaire{
-		entries: entries,
+	entriesCopy := make([]QuestionnaireEntry, len(entries))
+	copy(entriesCopy, entries)
+
+	q := Questionnaire{
+		entries: entriesCopy,
 	}
+
+	q.shuffleEntires()
+
+	return q
+}
+
+func (q *Questionnaire) shuffleEntires() {
+	rand.Shuffle(len(q.entries), func(i, j int) {
+		q.entries[i], q.entries[j] = q.entries[j], q.entries[i]
+	})
 }
 
 func (q *Questionnaire) Read() string {
 	if q.answersAlreadyRead == len(q.entries) {
 		q.answersAlreadyRead = 0
+		q.shuffleEntires()
 	}
 
 	if q.isQuestionRead {
