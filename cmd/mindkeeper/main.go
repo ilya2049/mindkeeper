@@ -16,6 +16,8 @@ func main() {
 	aQuestionnaire, err := questionaryUploader.Upload()
 	if err != nil {
 		fmt.Println("upload a questionnaire", err)
+
+		return
 	}
 
 	getNextStateCommandHandler := commands.NewGetQuestionAnswerCommandHandler(aQuestionnaire)

@@ -1,5 +1,7 @@
 package infra
 
+import "os"
+
 type QuestionnaireFileNameProvider struct {
 }
 
@@ -8,5 +10,9 @@ func NewQuestionnaireFileNameProvider() QuestionnaireFileNameProvider {
 }
 
 func (p QuestionnaireFileNameProvider) ProvideQuestionnaireFileName() string {
-	return "questionnaire.ini"
+	if len(os.Args) == 1 {
+		return ""
+	}
+
+	return os.Args[1]
 }
