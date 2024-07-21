@@ -4,26 +4,24 @@ import (
 	"fmt"
 
 	"mindkeeper/internal/app/commands"
-	"mindkeeper/internal/domain/questionnaire"
 	"mindkeeper/internal/infra"
 )
 
 func main() {
-	aQuestionnaire := questionnaire.New([]questionnaire.QuestionnaireEntry{
-		{
-			Question: "1",
-			Answer:   "2",
-		},
-		{
-			Question: "3",
-			Answer:   "4",
-		},
-	})
+	questionaryUploader := infra.NewQuestionnaireUploader(
+		infra.NewQuestionnaireParser(),
+		infra.NewQuestionnaireFileNameProvider(),
+	)
+
+	aQuestionnaire, err := questionaryUploader.Upload()
+	if err != nil {
+		fmt.Println("upload a questionnaire", err)
+	}
 
 	getNextStateCommandHandler := commands.NewGetQuestionAnswerCommandHandler(aQuestionnaire)
 	keyboard := infra.NewKeyboard(getNextStateCommandHandler)
 
 	if err := keyboard.Listen(); err != nil {
-		fmt.Println(err)
+		fmt.Println("listen keyboard", err)
 	}
 }
