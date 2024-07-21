@@ -3,15 +3,21 @@ package infra
 import (
 	"errors"
 	"fmt"
+	"mindkeeper/internal/app/commands"
 
 	"github.com/eiannone/keyboard"
 )
 
 type Keyboard struct {
+	getNextStateCommandHandler commands.GetNextStateCommandHandler
 }
 
-func NewKeyboard() Keyboard {
-	return Keyboard{}
+func NewKeyboard(
+	getNextStateCommandHandler commands.GetNextStateCommandHandler,
+) Keyboard {
+	return Keyboard{
+		getNextStateCommandHandler: getNextStateCommandHandler,
+	}
 }
 
 func (k Keyboard) Listen() (err error) {
@@ -25,7 +31,7 @@ func (k Keyboard) Listen() (err error) {
 		}
 	}()
 
-	fmt.Println("Press ESC to quit. Press ENTER to continue")
+	fmt.Println("Press ESC to quit. Press ENTER to continue.")
 
 	for {
 		_, key, err := keyboard.GetKey()
@@ -38,7 +44,7 @@ func (k Keyboard) Listen() (err error) {
 		}
 
 		if key == keyboard.KeyEnter {
-			fmt.Println("next")
+			fmt.Println(k.getNextStateCommandHandler.Handle())
 		}
 	}
 
