@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"os"
 
-	"mindkeeper/internal/domain/questionnaire"
+	"github.com/ilya2049/mindkeeper/internal/domain/questionnaire"
 )
 
 type QuestionnaireUploader struct {

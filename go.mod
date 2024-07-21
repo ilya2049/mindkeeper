@@ -1,4 +1,4 @@
-module mindkeeper
+module github.com/ilya2049/mindkeeper
 
 go 1.22.1
 

@@ -7,7 +7,7 @@ import (
 	"io"
 	"strings"
 
-	"mindkeeper/internal/domain/questionnaire"
+	"github.com/ilya2049/mindkeeper/internal/domain/questionnaire"
 )
 
 var (

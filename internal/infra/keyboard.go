@@ -3,7 +3,8 @@ package infra
 import (
 	"errors"
 	"fmt"
-	"mindkeeper/internal/app/commands"
+
+	"github.com/ilya2049/mindkeeper/internal/app/commands"
 
 	"github.com/eiannone/keyboard"
 )

@@ -1,6 +1,6 @@
 package commands
 
-import "mindkeeper/internal/domain/questionnaire"
+import "github.com/ilya2049/mindkeeper/internal/domain/questionnaire"
 
 type GetQuestionAnswerCommandHandler struct {
 	questionnaire questionnaire.Questionnaire

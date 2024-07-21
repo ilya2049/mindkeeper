@@ -3,8 +3,8 @@ package main
 import (
 	"fmt"
 
-	"mindkeeper/internal/app/commands"
-	"mindkeeper/internal/infra"
+	"github.com/ilya2049/mindkeeper/internal/app/commands"
+	"github.com/ilya2049/mindkeeper/internal/infra"
 )
 
 func main() {
