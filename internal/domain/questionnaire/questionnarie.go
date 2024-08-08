@@ -26,7 +26,7 @@ func New(entries []QuestionnaireEntry) Questionnaire {
 	return q
 }
 
-func (q *Questionnaire) shuffleEntires() {
+func (q Questionnaire) shuffleEntires() {
 	rand.Shuffle(len(q.entries), func(i, j int) {
 		q.entries[i], q.entries[j] = q.entries[j], q.entries[i]
 	})
